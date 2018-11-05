@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "[Book review] 맨먼스 미신"
 tags:
   - book
