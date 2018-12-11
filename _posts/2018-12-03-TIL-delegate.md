@@ -10,6 +10,8 @@ tags:
   - lambda expressions
 ---
 
+# delegate, anonymous function, lambda
+
 책에서 본 내용을 정리했다.
 
 delegate의 아주 단순한 설명이다. 찾아보니 더 심오한 내용이 많네. 일단 여기까지만.

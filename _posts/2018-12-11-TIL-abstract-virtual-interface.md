@@ -10,9 +10,9 @@ tags:
   - interface
 ---
 
-책에서 보인 김에 다시 한번 정리해 본다.
+# abstract, interface, virtual, override
 
-## abstract, interface, virtual, override
+책에서 보인 김에 다시 한번 정리해 본다.
 
 ```cs
 namespace Greeting
