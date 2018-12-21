@@ -4,6 +4,9 @@ comments: true
 title: "[SQL] REGEXP 관련 함수들을 이용하여 문자열을 구분자로 분리하기"
 tags:
   - sql
+  - regexp_substr
+  - regexp_count
+  - connect by level
   - oracle
 ---
 
