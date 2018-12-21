@@ -38,9 +38,9 @@ FROM TBL
 | 20181116  | 20181120 | CDE  | 12    |
 | 20181121  | 20181122 | CDE  | 11    |
 
-위와 같은 데이터가 있다. 날짜가 From ~ To로 입력되어 있고 NAME으로 groub by 할 수 있는 데이터다.
+위와 같은 데이터가 있다. 날짜가 From ~ To로 입력되어 있고 NAME으로 groub by 할 수 있는 데이터다.
 
-데이터를 NAME과 날짜로 정렬하고 SCORE가 이전 기간보다 얼마나 변화했는지 확인해보자. 변화량을 확인하려면 해당 기간의 값과 이전 기간의 값을 비교해야 한다.
+데이터를 NAME과 날짜로 정렬하고 SCORE가 이전 기간보다 얼마나 변화했는지 확인해보자. 변화량을 확인하려면 해당 기간의 값과 이전 기간의 값을 비교해야 한다.
 
 ```sql
 WITH TBL AS (
@@ -79,10 +79,10 @@ FROM TBL
 | 20181116  | 20181120 | CDE  | 12    | 9            | 3      |
 | 20181121  | 20181122 | CDE  | 11    | 12           | -1     |
 
-LAG, OVER 함수를 사용했다.
+LAG, OVER 함수를 사용했다.
 OVER는 GROUP BY, ORDER BY 같은 동작을 수행한다. 위 sql에서 PARTITION BY가 GROUP BY를 대신한다. PARTITION BY, ORDER BY 사이에 `,`가 필요없다. 함수의 매개변수처럼 생각되어서 꼭 `,`를 붙였다가 수정하곤 한다.
-LAG함수는 OVER 함수를 통한 결과에서 한 줄씩 다음 ROW의 값을 선택한다. LAG와 대칭되는 함수가 LEAD다.
-OVER에서 사용할 수 있는 OPTION
+LAG 함수는 OVER 함수를 통한 결과에서 한 줄씩 다음 ROW의 값을 선택한다. LAG와 대칭되는 함수가 LEAD다.
+OVER에서 사용할 수 있는 OPTION
 
 - ORDER BY
 - PARTITION BY

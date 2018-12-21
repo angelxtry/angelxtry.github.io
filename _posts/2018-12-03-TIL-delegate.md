@@ -90,7 +90,9 @@ public void Do()
 
 delegate 선언 부분을 제거하고 Count 메서드의 시그니처에 `Predicate<int>`가 추가됐다.
 
-Predicate는 delegate의 generic 버전이다. .NET 2.0 부터 사용가능하다.
+Predicate는 delegate의 generic 버전이다.
+
+.NET 2.0 부터 사용가능하다.
 
 Count를 호출하는 쪽에서는 delegate 키워드를 사용하여 익명 메소드를 만들고 Count에 인자로 전달한다.
 
