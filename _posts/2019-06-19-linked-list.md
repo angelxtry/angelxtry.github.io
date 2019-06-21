@@ -4,7 +4,7 @@ comments: true
 title: "linked list"
 tags:
   - linked list
-  - JavaScript
+  - data structure
 ---
 
 # linked list
