@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: "JavaScript Prototype"
+title: "[JavaScript] Prototype"
 tags:
   - prototype
 ---
