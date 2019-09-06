@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: "[React] React Hooks, axios를 활용하여 data fetch #1"
+title: "[React] React Hooks, axios를 활용하여 data fetch #2"
 tags:
   - react
   - hooks
