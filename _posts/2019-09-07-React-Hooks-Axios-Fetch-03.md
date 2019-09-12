@@ -13,7 +13,7 @@ hooks & axios 세번째, 이번 글의 마지막!
 
 이전 글
 
-[[React] React Hooks, axios를 활용하여 data fetch #1"](https://angelxtry.github.io/React-Hooks-Axios-Fetch-01/)
+[[React] React Hooks, axios를 활용하여 data fetch #1](https://angelxtry.github.io/React-Hooks-Axios-Fetch-01/)
 
 [[React] React Hooks, axios를 활용하여 data fetch #2](https://angelxtry.github.io/React-Hooks-Axios-Fetch-02/)
 

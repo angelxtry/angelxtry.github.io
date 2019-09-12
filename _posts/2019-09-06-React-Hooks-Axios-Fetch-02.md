@@ -13,7 +13,7 @@ tags:
 
 이전 글
 
-[[React] React Hooks, axios를 활용하여 data fetch #1"](https://angelxtry.github.io/React-Hooks-Axios-Fetch-01/)
+[[React] React Hooks, axios를 활용하여 data fetch #1](https://angelxtry.github.io/React-Hooks-Axios-Fetch-01/)
 
 ## 4. 로딩 상태 표시하기
 
