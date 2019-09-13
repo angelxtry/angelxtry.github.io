@@ -9,7 +9,7 @@ tags:
 
 React styled components를 사용해 보려고 공부 중이다.
 
-Youtube 노마드코더의 [Make CSS Great Again! Styled Components!](https://www.youtube.com/watch?v=MqGxMOhPqeI&list=PL7jH19IHhOLNUIOJcGj6egl-dNB-QXjEm) 를 보고 일부 내용을 요약하고, 일부 수정, 내 생각을 추가했다.
+노마드코더의 [Make CSS Great Again! Styled Components!](https://www.youtube.com/watch?v=MqGxMOhPqeI&list=PL7jH19IHhOLNUIOJcGj6egl-dNB-QXjEm) Youtube를 보고 일부 내용을 요약하고, 일부 수정, 내 생각을 추가했다.
 
 ## 기본 환경 설정
 

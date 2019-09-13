@@ -9,7 +9,9 @@ tags:
 
 어제에 이어서 styeld components에 대해 계속 정리해본다.
 
-이전 글
+노마드코더의 [Make CSS Great Again! Styled Components!](https://www.youtube.com/watch?v=MqGxMOhPqeI&list=PL7jH19IHhOLNUIOJcGj6egl-dNB-QXjEm) Youtube를 보고 일부 내용을 요약하고, 일부 수정, 내 생각을 추가했다.
+
+## 이전 글
 
 [[React] React styled components #1](https://angelxtry.github.io/React-Styled-Components-01/)
 
