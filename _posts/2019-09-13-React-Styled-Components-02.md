@@ -220,7 +220,7 @@ export default App;
 
 ```
 
-`form`의 `Input`은 styled component다. 
+`form`의 `Input`은 styled component다.
 `Input`에서 사용한 type, name, required 같은 attribute들도 styled component에서 표현할 수 있다.
 
 ```js
