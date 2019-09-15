@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: "[Express] Express Mysql Setting #1"
+title: "[Express] Express Mysql Setting #2"
 tags:
   - Express
   - MySQL
