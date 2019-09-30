@@ -14,20 +14,20 @@ Express의 기본 구조와 middleware를 살펴보자.
 
 express generator를 설치한다.
 
-```cmd
+```js
 npm i -g express-generator
 ```
 
 `express-generator` 설치가 끝나면 다음과 같이 실행한다.
 
-```cmd
+```js
 express learn-express --view=pug
 ```
 
 learn-express 라는 폴더가 생성된다.
 해당 폴더로 이동하여 기본 package를 설치한다.
 
-```cmd
+```js
 cd learn-express
 npm i
 ```
@@ -50,8 +50,11 @@ var port = normalizePort(process.env.PORT || '3000');
 `learn-express` 폴더를 살펴보면 ​다음과 같은 폴더가 있다.
 
 `bin`
+
 `public`
+
 `routes`
+
 `views`
 
 ## app.js
@@ -240,7 +243,7 @@ module.exports = app;
 
 브라우저에서 서버로 요청을 보내면 다음과 같은 메시지가 터미널에 출력된다.
 
-```cmd
+```js
 first middleware.
 GET / 200 5.554 ms - 14
 ```
