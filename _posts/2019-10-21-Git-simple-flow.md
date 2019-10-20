@@ -72,7 +72,7 @@ push한 `feature/[branch-name]`를 github repo의 develop branch에 merge하기 
 
 보통 github repo 웹페이지에 접속하여 `Pull request` 버튼을 클릭하여 처리한다.
 
-### 1-6 merge 완료 후
+## 1-6 merge 완료 후
 
 merge까지 잘 되었다면 local에서 develop branch로 이동한다.
 
