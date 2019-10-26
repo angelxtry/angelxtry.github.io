@@ -150,3 +150,5 @@ export default Layout;
 ```
 
 `Input`의 위치를 잡아주기 위해 `style={{ verticalAlign: 'middle' }}`을 추가했다.
+
+![첫 화면](https://drive.google.com/uc?export=view&id=1PVIs38F3B02RMr8zSiU4sF4EXd04LeeL)
