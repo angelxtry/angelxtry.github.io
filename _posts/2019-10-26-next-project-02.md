@@ -1,11 +1,11 @@
 ---
 layout: post
 comments: true
-title: "Next.js를 이용한 간단한 프로젝트"
+title: "Next.js를 이용한 간단한 프로젝트 - signup page 만들기"
 
 tags:
   - Next.js
-  - react
+  - reac기
   - antd
 ---
 
