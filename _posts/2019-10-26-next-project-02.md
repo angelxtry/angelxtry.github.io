@@ -5,7 +5,7 @@ title: "Next.js를 이용한 간단한 프로젝트 - signup page 만들기"
 
 tags:
   - Next.js
-  - reac기
+  - react
   - antd
 ---
 
@@ -77,6 +77,10 @@ export default signup;
 `Button`은 `Form` 태그 안에 위치해야 한다.
 
 `Input` 태그에는 `value`, `onChange` 속성이 포함되어 있고, 해당 항목은 `useState`를 이용하여 구현된다.
+
+`useState`외에 `useCallback`도 사용했다.
+
+props로 전달하는 함수들은 모두 `useCallback`으로 감싸주는 것이 좋다.
 
 동일한 방식으로 `Form`에 필요한 항목들을 추가해보자.
 
