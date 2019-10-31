@@ -95,7 +95,7 @@ const Home = () => {
         return (
           <Card
             key={post.postId}
-            corver={post.img && <img alt="example" src={post.img} />}
+            cover={post.img && <img alt="example" src={post.img} />}
             actions={[
               <Icon type="retweet" key="retweet" />,
               <Icon type="heart" key="heart" />,
@@ -203,7 +203,7 @@ import { Card, Icon, Button, Avatar } from 'antd';
 const PostCard = ({ post }) => {
   return (
     <Card
-      corver={post.img && <img alt="example" src={post.img} />}
+      cover={post.img && <img alt="example" src={post.img} />}
       actions={[
         <Icon type="retweet" key="retweet" />,
         <Icon type="heart" key="heart" />,
