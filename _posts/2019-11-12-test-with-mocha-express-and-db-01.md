@@ -26,7 +26,7 @@ tags:
 > npm i -g sequelize-cli nodemon
 ```
 
-## DB Setting
+## 1. DB Setting
 
 DB부터 만들어보자.
 
@@ -126,7 +126,7 @@ module.exports = (sequelize, DataTypes) => {
 
 테이블도 만들 겸 express의 index.js를 작성하자.
 
-## express 설정
+## 2. express 설정
 
 ```js
 const express = require('express');
@@ -148,11 +148,11 @@ app.listen(8888, () => {
 
 nodemon index.js로 실행하면 `db.sequelize.sync()` 덕에 mysql의 tdd_dev database에 ​user table이 생성된다.
 
-## 테스트 준비
+## 3. 테스트 준비
 
 처음에 설치했던 테스트 관련 package를 간단히 훑어보자.
 
-### mocha
+### 3-1 mocha
 
 mocha는 테스트 코드를 돌려주는 테스트 러너다.
 
@@ -160,7 +160,7 @@ test suit 안에 test case를 작성한다.
 
 test suit는 describe, test case는 it으로 구현한다.
 
-### should
+### 3-2 should
 
 BDD 스타일의 assertion 모듈이다.
 
@@ -170,7 +170,7 @@ BDD 스타일의 assertion 모듈이다.
 result.should.be.equal('value');
 ```
 
-### supertest
+### 3-3 supertest
 
 테스트는 단위 테스트와 통합 테스트로 구분할 수 있다.
 
@@ -182,7 +182,7 @@ supertest는 express 통합 테스트 라이브러리다.
 
 내부적으로 express를 구동하여 실제 요청을 보낸 뒤 결과를 검증한다.
 
-## 폴더 구조 설정
+## 4. 폴더 구조 설정
 
 root 폴더에 `api/user` 폴더를 생성한다.
 
@@ -194,7 +194,7 @@ root 폴더에 `api/user` 폴더를 생성한다.
 
 `user.spec.js` 파일은 테스트 코드가 포함된다.
 
-## 테스트 작성
+## 5. 테스트 작성
 
 회원 가입 부터 시작하자.
 
@@ -283,7 +283,7 @@ module.exports = {
 };
 ```
 
-## 테스트 실행
+## 6. 테스트 실행
 
 이제 테스트를 실행할 차례다.
 
@@ -335,7 +335,7 @@ describe('POST /api/user/signup 요청 시 email, nickname, password를 전달�
 
 `NODE_ENV`를 활용하여 테스트 환경을 분리했다.
 
-## 테스트 환경 분리
+## 7. 테스트 환경 분리
 
 `index.js`
 
