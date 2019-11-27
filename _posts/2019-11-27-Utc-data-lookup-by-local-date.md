@@ -99,3 +99,5 @@ WHERE (
 날짜나 timestamp를 사용할 때는 한 번 더 생각하자.
 
 MySQL, moment의 사용법에 대해 좀 더 알게됐다.
+
+[https://github.com/angelxtry/Utc-data-lookup-by-local-date](https://github.com/angelxtry/Utc-data-lookup-by-local-date)
