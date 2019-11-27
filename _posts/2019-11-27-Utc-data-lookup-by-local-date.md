@@ -60,10 +60,31 @@ const timestamp = moment().utc().format();
 
 2.날짜로 검색하기 위해 local date(YYYY-MM-DD 형식)를 받으면 다음과 같이 변환한 값을 이용하여 데이터를 검색했다.
 
+검색을 위해 날짜를 인자로 전달할 때는 다음과 같이 작성했다.
+
+```js
+await getDataByDate(
+    moment()
+      .startOf('day')
+      .local()
+      .format(),
+  );
+```
+
+monent()를 호출하면 `2019-11-27T20:05:05+09:00` 이런 형식의 데이터가 나온다.
+
+이 timestamp를 utc로 변환하는 과정에서 시간 때문에 오류가 발생할 수도 있으므로 `startOf('day')`를 넣어서 `2019-11-27T00:00:00+09:00`으로 변경한다.
+
 ```js
 const utcFrom = moment(localDate).utc();
 const utcTo = utcFrom.clone().add(1, 'd');
 ```
+
+localDate가 `2019-11-27T00:00:00+09:00` 일때
+
+utcFrom `2019-11-26T15:00:00Z`
+
+utcTo `2019-11-27T15:00:00Z` 가 된다.
 
 sequelize로 데이터를 조회하기 위해 다음과 같이 코드를 작성했다.
 
@@ -99,5 +120,7 @@ WHERE (
 날짜나 timestamp를 사용할 때는 한 번 더 생각하자.
 
 MySQL, moment의 사용법에 대해 좀 더 알게됐다.
+
+테스트한 코드는 다음과 같다.
 
 [https://github.com/angelxtry/Utc-data-lookup-by-local-date](https://github.com/angelxtry/Utc-data-lookup-by-local-date)
