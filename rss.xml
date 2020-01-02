@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TIL]]></title><description><![CDATA[재밌어...]]></description><link>https://gatsby-starter-bee.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 30 Dec 2019 15:47:15 GMT</lastBuildDate><item><title><![CDATA[2019-12-30 TIL]]></title><description><![CDATA[오늘은 미니 프로젝트의 GraphQL Schema를 일부 추가했고, blog를 AWS에서 Github으로 옮겼다. GraphQL과 TypeORM은 아직까지는 술술 풀리고 있다. 단, TypeORM…]]></description><link>https://gatsby-starter-bee.netlify.com/til/2019-12-30-til/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/til/2019-12-30-til/</guid><pubDate>Tue, 31 Dec 2019 00:12:27 GMT</pubDate><content:encoded>&lt;p&gt;오늘은 미니 프로젝트의 GraphQL Schema를 일부 추가했고, blog를 AWS에서 Github으로 옮겼다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TIL]]></title><description><![CDATA[재밌어...]]></description><link>https://gatsby-starter-bee.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 02 Jan 2020 11:12:58 GMT</lastBuildDate><item><title><![CDATA[2020-01-02  AWS 서버 교체]]></title><description><![CDATA[이전 프로젝트 했던 서버를 유지하고 있다. 내가 만들고 싶었던 프로그램이 돌아가고 있고, 지금도 그 프로그램을 유용하게 사용하고 있다. 혹시 요금이 과하게 나오지 않을까 걱정이 되어서 아침 저녁으로 Bill…]]></description><link>https://gatsby-starter-bee.netlify.com/development/2020-01-02-aws-server-replacement/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/development/2020-01-02-aws-server-replacement/</guid><pubDate>Thu, 02 Jan 2020 20:01:00 GMT</pubDate><content:encoded>&lt;p&gt;이전 프로젝트 했던 서버를 유지하고 있다. 내가 만들고 싶었던 프로그램이 돌아가고 있고, 지금도 그 프로그램을 유용하게 사용하고 있다.&lt;/p&gt;
+&lt;p&gt;혹시 요금이 과하게 나오지 않을까 걱정이 되어서 아침 저녁으로 Bill을 확인하고 있었는데 언젠가부터 조금씩 비용이 발생하기 시작했다. 계속 사용 중이고, 유지보수도 계속 할 생각이어서 어느 정도의 비용은 감수하려고 했다. 하지만 월 30$가 넘어가니 과하다는 생각이 들었다.&lt;/p&gt;
+&lt;p&gt;이런 저런 방법을 생각해보다가 임시방편으로 계정을 하나 더 만들고 신규 계정으로 이관하는 것으로 결정했다. 비용을 줄이려면 EC2를 줄이는 방법이 최선인데 당장 작업을 하기에는 시간이 부족하다고 판단해서 이관을 1차 목표로 잡았다.&lt;/p&gt;
+&lt;p&gt;옮기려고 하는 서버의 설정 정보는 다음과 같다.&lt;/p&gt;
+&lt;h2 id=&quot;설정-정보&quot;&gt;&lt;a href=&quot;#%EC%84%A4%EC%A0%95-%EC%A0%95%EB%B3%B4&quot; aria-label=&quot;설정 정보 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;설정 정보&lt;/h2&gt;
+&lt;p&gt;Security Group&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;inbound: 22, 80, 443, 3000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Load Balancer&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Port Configuration&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;80 (HTTP) forwarding to 3000 (HTTP)&lt;/li&gt;
+&lt;li&gt;443 (HTTPS, ACM Certificate) forwarding to 3000 (HTTP)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Health check&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP:3000/index&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;작업-과정&quot;&gt;&lt;a href=&quot;#%EC%9E%91%EC%97%85-%EA%B3%BC%EC%A0%95&quot; aria-label=&quot;작업 과정 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;작업 과정&lt;/h2&gt;
+&lt;p&gt;1 새로운 EC2 생성&lt;/p&gt;
+&lt;p&gt;2 Elastic IP 적용&lt;/p&gt;
+&lt;p&gt;3 Security Group 생성 &amp;#x26; 적용&lt;/p&gt;
+&lt;p&gt;4 서버 접속 후 서버 설정&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cmd&quot;&gt;&lt;pre class=&quot;language-cmd&quot;&gt;&lt;code class=&quot;language-cmd&quot;&gt;sudo apt-get update
+
+sudo apt-get install -y build-essential
+
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash --
+
+sudo apt-get install -y nodejs
+
+git clone
+
+npm i --production
+
+npm i -g sequelize-cli (only server)
+
+npm i -g pm2
+
+secret file copy
+
+npm start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;5 인증서 생성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Load Balancer를 사용하려면 us-east-1에 인증서를 만들어야 한다.&lt;/li&gt;
+&lt;li&gt;인증서는 무료이니 일단 만든다.&lt;/li&gt;
+&lt;li&gt;abc.com, *.abc.com 생성&lt;/li&gt;
+&lt;li&gt;CNAME을 기존 계정의 Route53에 등록&lt;/li&gt;
+&lt;li&gt;기다리면 Pending -&gt; Issued로 변경됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;6 Load Balancer 생성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Classic Load Balancer 선택&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;방금 생성한 인증서 추가&lt;/li&gt;
+&lt;li&gt;health check 설정&lt;/li&gt;
+&lt;li&gt;신규 서버 health check 확인&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;7 기존 계정 Route53에 신규 서버 등록&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Alias Target에 신규 계정 Load Balancer의 DNS name 등록&lt;/li&gt;
+&lt;li&gt;일정 시간 대기 후 접속 확인 -&gt; 성공!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;8 기존 계정의 자원 정리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EC2 stop&lt;/li&gt;
+&lt;li&gt;Elastic IP 삭제&lt;/li&gt;
+&lt;li&gt;Load Balancer 삭제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;간단-회고&quot;&gt;&lt;a href=&quot;#%EA%B0%84%EB%8B%A8-%ED%9A%8C%EA%B3%A0&quot; aria-label=&quot;간단 회고 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;간단 회고&lt;/h2&gt;
+&lt;p&gt;막상 해보니 그리 어렵지 않은 작업이었다. Route53에 다른 계정의 자원이 잘 등록될까 궁금했는데 매끄럽게 잘 진행됐다.&lt;/p&gt;
+&lt;p&gt;이관 후 Security Group에서 불필요해 보이는 port를 삭제했다.&lt;/p&gt;
+&lt;p&gt;앞으로 예상되는 난관은 DB서버인데… 계획을 잘 세우고 진행해야 겠다 ㅋㅋ&lt;/p&gt;</content:encoded></item><item><title><![CDATA[2019-12-30 TIL]]></title><description><![CDATA[오늘은 미니 프로젝트의 GraphQL Schema를 일부 추가했고, blog를 AWS에서 Github으로 옮겼다. GraphQL과 TypeORM은 아직까지는 술술 풀리고 있다. 단, TypeORM…]]></description><link>https://gatsby-starter-bee.netlify.com/til/2019-12-30-til/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/til/2019-12-30-til/</guid><pubDate>Tue, 31 Dec 2019 00:12:27 GMT</pubDate><content:encoded>&lt;p&gt;오늘은 미니 프로젝트의 GraphQL Schema를 일부 추가했고, blog를 AWS에서 Github으로 옮겼다.&lt;/p&gt;
 &lt;p&gt;GraphQL과 TypeORM은 아직까지는 술술 풀리고 있다. 단, TypeORM에서 코드 중복이 많이 발생하는데, 이걸 추상화해서 개선해야 한다는 압박감에 시달리고 있다. 일단 일정을 맞춰야하는데…&lt;/p&gt;
 &lt;p&gt;HTTPS 적용이 늦어지고 있다. 값싼 도메인을 하나 사서 AWS에 직접 구현해보려고 시도중이다. 현재 Front 코드를 S3, Cloud Front, Route53을 이용하여 먼제 HTTPS를 적용하고, 그 다음 Back을 진행하려고 한다.&lt;/p&gt;
 &lt;p&gt;S3 bucket은 만들었고, Cloud Front 설정을 진행 중이다. 얼른 진행하자.&lt;/p&gt;
