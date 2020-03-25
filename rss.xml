@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TIL]]></title><description><![CDATA[재밌어...]]></description><link>https://gatsby-starter-bee.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 24 Mar 2020 15:49:21 GMT</lastBuildDate><item><title><![CDATA[2020-03-24 TIL]]></title><description><![CDATA[TypeScript와 redux-saga를 같이 사용할 일이 생겼는데, redux-saga에 TypeScript를 같이 사용하니 난이도가 확 올라간다. GraphQL보다 더 어려운 것 같다. ㅠㅠ 이리 저리 꿰어 맞춰서 boilerplate…]]></description><link>https://gatsby-starter-bee.netlify.com/til/2020-03-24-til/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/til/2020-03-24-til/</guid><pubDate>Wed, 25 Mar 2020 00:04:11 GMT</pubDate><content:encoded>&lt;p&gt;TypeScript와 redux-saga를 같이 사용할 일이 생겼는데, redux-saga에 TypeScript를 같이 사용하니 난이도가 확 올라간다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TIL]]></title><description><![CDATA[재밌어...]]></description><link>https://gatsby-starter-bee.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 25 Mar 2020 15:55:27 GMT</lastBuildDate><item><title><![CDATA[2020-03-25 TIL]]></title><description><![CDATA[오늘 한 일 새로운 프로젝트의 front setting을 했다. 폴더구조를 다음과 같이 설정했다. api: api endpoint 관리 components: hooks를 사용하는 components, store에 직접 접근하지 않는다. hooks…]]></description><link>https://gatsby-starter-bee.netlify.com/til/2020-03-25-til/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/til/2020-03-25-til/</guid><pubDate>Thu, 26 Mar 2020 00:03:32 GMT</pubDate><content:encoded>&lt;h2 id=&quot;오늘-한-일&quot;&gt;&lt;a href=&quot;#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC&quot; aria-label=&quot;오늘 한 일 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;오늘 한 일&lt;/h2&gt;
+&lt;p&gt;새로운 프로젝트의 front setting을 했다.&lt;/p&gt;
+&lt;p&gt;폴더구조를 다음과 같이 설정했다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;├── api
+├── components
+├── hooks
+├── modules
+│   ├── index&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ts
+│   ├── store
+│   │   ├── actions&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ts
+│   │   ├── index&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ts
+│   │   ├── reducer&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ts
+│   │   ├── sagas&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ts
+│   │   └── types&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ts
+└── routes
+    ├── Home
+    └── Posts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;api: api endpoint 관리&lt;/li&gt;
+&lt;li&gt;components: hooks를 사용하는 components, store에 직접 접근하지 않는다.&lt;/li&gt;
+&lt;li&gt;hooks: custom hooks, store에 직접 접근한다.&lt;/li&gt;
+&lt;li&gt;module: redux, redux-saga를 이용한 store 정의.&lt;/li&gt;
+&lt;li&gt;reoutes: page들을 표현.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://jbee.io/react/react-0-intro/&quot;&gt;한재엽님의 React 프로젝트 후기(?)&lt;/a&gt;를 여러 번 반복해서 읽고 있다. 고민했던 내용들이 많이 담겨 있어 도움이 많이된다.&lt;/p&gt;
+&lt;h2 id=&quot;느낀-것&quot;&gt;&lt;a href=&quot;#%EB%8A%90%EB%82%80-%EA%B2%83&quot; aria-label=&quot;느낀 것 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;느낀 것&lt;/h2&gt;
+&lt;p&gt;뭔가를 시작하기 전에 해야 할 일을 최대한 자세히 적고 있다. 뭔가를 직접 하는 것보다 뭘 해야 할지 계획하고 예상하는 것에 더 신경을 쓰고 있다. 그리고 일을 끝마치면 바로 타이머를 끄고 한 일을 적고, 계획했던 대로 진행됐는지, 예상했던 것 처럼 진행됐는지 다시 한번 확인한다.&lt;/p&gt;
+&lt;p&gt;아직 잘 안되는 부분이 있지만 이 루틴에 더욱 집중해보려고 한다.&lt;/p&gt;
+&lt;h2 id=&quot;내일-해야-할-일&quot;&gt;&lt;a href=&quot;#%EB%82%B4%EC%9D%BC-%ED%95%B4%EC%95%BC-%ED%95%A0-%EC%9D%BC&quot; aria-label=&quot;내일 해야 할 일 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;내일 해야 할 일&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Make habit&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;server: habit 추가 schema, resolver 구현&lt;/li&gt;
+&lt;li&gt;front: habit 추가 구현&lt;/li&gt;
+&lt;li&gt;server: test 환경 설정&lt;/li&gt;
+&lt;li&gt;front: react-heatmap-grid 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[2020-03-24 TIL]]></title><description><![CDATA[TypeScript와 redux-saga를 같이 사용할 일이 생겼는데, redux-saga에 TypeScript를 같이 사용하니 난이도가 확 올라간다. GraphQL보다 더 어려운 것 같다. ㅠㅠ 이리 저리 꿰어 맞춰서 boilerplate…]]></description><link>https://gatsby-starter-bee.netlify.com/til/2020-03-24-til/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/til/2020-03-24-til/</guid><pubDate>Wed, 25 Mar 2020 00:04:11 GMT</pubDate><content:encoded>&lt;p&gt;TypeScript와 redux-saga를 같이 사용할 일이 생겼는데, redux-saga에 TypeScript를 같이 사용하니 난이도가 확 올라간다.&lt;/p&gt;
 &lt;p&gt;GraphQL보다 더 어려운 것 같다. ㅠㅠ&lt;/p&gt;
 &lt;p&gt;이리 저리 꿰어 맞춰서 boilerplate까지는 만들었다.&lt;/p&gt;
 &lt;p&gt;이 난관을 잘 극복할 수 있을 것인가!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[2020-03-20 TIL]]></title><description><![CDATA[Apollo Client로 작은 웹 앱을 하나 만들려다가 실패했다. ㅠㅠ 서버 없이, local storage를 안쓰고, cache…]]></description><link>https://gatsby-starter-bee.netlify.com/til/2020-03-20-til/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/til/2020-03-20-til/</guid><pubDate>Fri, 20 Mar 2020 21:03:26 GMT</pubDate><content:encoded>&lt;p&gt;Apollo Client로 작은 웹 앱을 하나 만들려다가 실패했다. ㅠㅠ&lt;/p&gt;
