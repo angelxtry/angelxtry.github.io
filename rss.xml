@@ -1,4 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TIL]]></title><description><![CDATA[재밌어...]]></description><link>https://gatsby-starter-bee.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 11 May 2020 15:45:52 GMT</lastBuildDate><item><title><![CDATA[CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #3]]></title><description><![CDATA[관련 글 CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #1 CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #2 어제까지 설정했던 Webpack을 기반으로 CRA…]]></description><link>https://gatsby-starter-bee.netlify.com/development/2020-05-11-webpack-png-bundle-analyzer-externals/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/development/2020-05-11-webpack-png-bundle-analyzer-externals/</guid><pubDate>Tue, 12 May 2020 00:06:22 GMT</pubDate><content:encoded>&lt;p&gt;관련 글&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TIL]]></title><description><![CDATA[재밌어...]]></description><link>https://gatsby-starter-bee.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 12 May 2020 16:30:57 GMT</lastBuildDate><item><title><![CDATA[Styled Components porps 사용법 및 warning 해결]]></title><description><![CDATA[토이 프로젝트에 styled components를 사용하고 있다. props를 전달하는 방법, 삽질한 내용을 정리해보자. props 전달 코드의 일부를 가져왔다. BookInfoForm 함수에서 FormContainer에 isAddPage…]]></description><link>https://gatsby-starter-bee.netlify.com/development/2020-05-12-styled-conponent-props/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/development/2020-05-12-styled-conponent-props/</guid><pubDate>Wed, 13 May 2020 01:05:19 GMT</pubDate><content:encoded>&lt;p&gt;토이 프로젝트에 styled components를 사용하고 있다.&lt;/p&gt;
+&lt;p&gt;props를 전달하는 방법, 삽질한 내용을 정리해보자.&lt;/p&gt;
+&lt;h2 id=&quot;props-전달&quot;&gt;&lt;a href=&quot;#props-%EC%A0%84%EB%8B%AC&quot; aria-label=&quot;props 전달 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;props 전달&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;tsx&quot;&gt;&lt;pre class=&quot;language-tsx&quot;&gt;&lt;code class=&quot;language-tsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ContainerType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  isAddPage&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;boolean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; FormContainer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;styled&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Form&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ContainerType&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;`
+  display: grid;
+  grid-template-rows: 100px 100px 100px 100px auto 100px;
+  background-color: ${(props) =&gt; props.theme.colors.formBackgroundColor};
+  width: 100vw;
+
+  ${(props) =&gt;
+    props.isAddPage
+      ? css`
+          border-radius: 20px;
+          box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.12);
+        `
+      : css``};
+
+  @media (min-width: 600px) {
+    width: 600px;
+  }
+`;
+
+export default function BookInfoForm({ isAddPage }: BookInfoFormProps) &lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;FormContainer&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;bookInfoForm&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;isAddPage&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;isAddPage&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Label&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;htmlFor&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;title&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;FormContainer&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;코드의 일부를 가져왔다.&lt;/p&gt;
+&lt;p&gt;BookInfoForm 함수에서 FormContainer에 isAddPage라는 props를 전달한다.&lt;/p&gt;
+&lt;p&gt;type을 명시하기 위해 ContainerType이라는 interface를 사용했다.&lt;/p&gt;
+&lt;p&gt;이 코드를 실행하면 chrome에서 정상동작한다. 하지만 conole에 warning 메시지가 출력된다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;Warning&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; React does not recognize the &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;isAddPage&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt; prop on a &lt;span class=&quot;token constant&quot;&gt;DOM&lt;/span&gt; element&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; If you intentionally want it to appear &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; the &lt;span class=&quot;token constant&quot;&gt;DOM&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; a custom attribute&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; spell it &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; lowercase &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;isaddpage&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt; instead&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; If you accidentally passed it &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; a parent component&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; remove it &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; the &lt;span class=&quot;token constant&quot;&gt;DOM&lt;/span&gt; element&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;isaddpage로 수정하려다가 뭔가 이상해서 검색해보니 v4 버전의 버그라고 하는 것 같다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;data-*&lt;/code&gt; attributes 속성을 권장해서 코드를 고쳐봤다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;tsx&quot;&gt;&lt;pre class=&quot;language-tsx&quot;&gt;&lt;code class=&quot;language-tsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ContainerType&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&apos;data-is-add-page&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;boolean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; FormContainer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;styled&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Form&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ContainerType&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;`
+  display: grid;
+  grid-template-rows: 100px 100px 100px 100px auto 100px;
+  background-color: ${(props) =&gt; props.theme.colors.formBackgroundColor};
+  width: 100vw;
+
+  ${(props) =&gt;
+    props[&apos;data-is-add-page&apos;]
+      ? css`
+          border-radius: 20px;
+          box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.12);
+        `
+      : css``};
+
+  @media (min-width: 600px) {
+    width: 600px;
+  }
+`;
+
+export default function BookInfoForm({ isAddPage }: BookInfoFormProps) &lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;FormContainer&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;bookInfoForm&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;data-is-add-page&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;isAddPage&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Label&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;htmlFor&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;title&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;FormContainer&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위와 같이 코드를 수정하니 warning이 사라졌다.&lt;/p&gt;
+&lt;h2 id=&quot;느낀-점-배운-점&quot;&gt;&lt;a href=&quot;#%EB%8A%90%EB%82%80-%EC%A0%90-%EB%B0%B0%EC%9A%B4-%EC%A0%90&quot; aria-label=&quot;느낀 점 배운 점 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;느낀 점, 배운 점&lt;/h2&gt;
+&lt;p&gt;styled components도 사용할 수록 익숙해지긴하는데 css를 간소하게 작성하는 능력이 아직 부족하다는 것을 느낀다.&lt;/p&gt;
+&lt;p&gt;조만간 날잡고 전체적으로 css를 한번 정리하는 시간을 가져야겠다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[2020-05-12 TIL]]></title><description><![CDATA[오늘 할일 Bside 프로젝트 오늘 한일 Bside 프로젝트 내일 할일 이력서 업데이트 포트폴리오 정리 Formik 사용법 v2 웹폰트 사용법 Bside 프로젝트 진행 내용 글쓰기 좋았던 점 vs. 아쉬웠던 점 진행과정 front…]]></description><link>https://gatsby-starter-bee.netlify.com/til/2020-05-12-til/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/til/2020-05-12-til/</guid><pubDate>Tue, 12 May 2020 10:05:36 GMT</pubDate><content:encoded>&lt;h2 id=&quot;오늘-할일&quot;&gt;&lt;a href=&quot;#%EC%98%A4%EB%8A%98-%ED%95%A0%EC%9D%BC&quot; aria-label=&quot;오늘 할일 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;오늘 할일&lt;/h2&gt;
+&lt;p&gt;Bside 프로젝트&lt;/p&gt;
+&lt;h2 id=&quot;오늘-한일&quot;&gt;&lt;a href=&quot;#%EC%98%A4%EB%8A%98-%ED%95%9C%EC%9D%BC&quot; aria-label=&quot;오늘 한일 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;오늘 한일&lt;/h2&gt;
+&lt;p&gt;Bside 프로젝트&lt;/p&gt;
+&lt;h2 id=&quot;내일-할일&quot;&gt;&lt;a href=&quot;#%EB%82%B4%EC%9D%BC-%ED%95%A0%EC%9D%BC&quot; aria-label=&quot;내일 할일 permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;내일 할일&lt;/h2&gt;
+&lt;p&gt;이력서 업데이트&lt;/p&gt;
+&lt;p&gt;포트폴리오 정리&lt;/p&gt;
+&lt;p&gt;Formik 사용법 v2&lt;/p&gt;
+&lt;p&gt;웹폰트 사용법&lt;/p&gt;
+&lt;p&gt;Bside 프로젝트&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;진행 내용 글쓰기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;좋았던 점 vs. 아쉬웠던 점&lt;/li&gt;
+&lt;li&gt;진행과정&lt;/li&gt;
+&lt;li&gt;front 기본코드 생성, 폴더 구조&lt;/li&gt;
+&lt;li&gt;로그인 진행&lt;/li&gt;
+&lt;li&gt;와이어 프레임을 기준으로 작성한 코드들&lt;/li&gt;
+&lt;li&gt;1차 디자인으로 작성한 화면&lt;/li&gt;
+&lt;li&gt;삽질했던 CSS 정리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;프로젝트 Webpack으로 이관&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ts-node vs babel&lt;/li&gt;
+&lt;li&gt;ts-node만 사용하면 되는건가&lt;/li&gt;
+&lt;li&gt;babel을 사용해야하는 이유가 있나&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #3]]></title><description><![CDATA[관련 글 CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #1 CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #2 어제까지 설정했던 Webpack을 기반으로 CRA…]]></description><link>https://gatsby-starter-bee.netlify.com/development/2020-05-11-webpack-png-bundle-analyzer-externals/</link><guid isPermaLink="false">https://gatsby-starter-bee.netlify.com/development/2020-05-11-webpack-png-bundle-analyzer-externals/</guid><pubDate>Tue, 12 May 2020 00:06:22 GMT</pubDate><content:encoded>&lt;p&gt;관련 글&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://blog.doitreviews.com/development/2020-05-07-react-typescript-webpack/&quot;&gt;CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #1&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://blog.doitreviews.com/development/2020-05-11-webpack-dev-server-and-svg/&quot;&gt;CRA 없이 React + TypeScript + Webpack 프로젝트 만들기 #2&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
